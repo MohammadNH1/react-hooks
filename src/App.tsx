@@ -1,20 +1,21 @@
-import { useState } from "react"
-import ConditionalRendering from "./components/ConditionalRedering"
-import ExpensiveComponent from "./components/ExpensiveComponents"
-// https://dev.to/kirubelkinfe/mastering-usememo-in-react-with-typescript-4-different-use-cases-for-usememo-5gal
+import ChildComponents from "./components/ChildComponents"
+import { useCallback, useState } from "react"
+// https://dev.to/elhamnajeebullah/react-typescript-usecallback-hook-3bnm
 
 function App(){
-  const [showDetails,setShowDetails] = useState<boolean>(true)
-  const handleToggle = ()=>{
-    setShowDetails(!showDetails)
-  }
+
+const [count,setCount] = useState<number>(0)
+const hanldeClick = useCallback(()=>{
+  setCount(count+1)
+},[count])
+
+
 return(
-  <>
+  <div>
   <h4> Hello World</h4>
-  <ExpensiveComponent data={[10,20,100,200,6000,10,10000]}/>
-  <ConditionalRendering showDetails={showDetails}/>
-  <button onClick={handleToggle}>{showDetails?'hide details page':'show details page'}</button>
-  </>
+  <p>{count}</p>
+  <ChildComponents onClick={hanldeClick}/>
+  </div>
   
 )
 }
