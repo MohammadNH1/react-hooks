@@ -1,24 +1,17 @@
-import { useEffect, useState } from "react"
-
+import { CounterContent } from "./components/Counter"
+import { StudentContent } from "./components/student"
+import { UserContent } from "./components/user"
 
 function App() {
- const [counter,setCounter] = useState<number>(0)
-
- const handleClick = ()=>{
-  setCounter((prev)=>prev+1)
- }
-useEffect(()=>{
-  if(counter===4) console.log('hello word')
-},[counter])
-
-
-
   return (
    <>
-   <h4>Hello world</h4>
-   <p>{counter}</p>
-   <button onClick={handleClick}>increment</button>
-   
+   <CounterContent/>
+  <div style={{marginTop:'40px'}}>
+  <UserContent/>
+  </div>
+  <div>
+    <StudentContent/>
+  </div>
    </>
   )
 }
