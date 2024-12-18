@@ -1,17 +1,9 @@
-import { CounterContent } from "./components/Counter"
-import { StudentContent } from "./components/student"
-import { UserContent } from "./components/user"
-
+import { Counter } from "./reducer/counter"
 function App() {
   return (
    <>
-   <CounterContent/>
-  <div style={{marginTop:'40px'}}>
-  <UserContent/>
-  </div>
-  <div>
-    <StudentContent/>
-  </div>
+   <Counter/>
+  
    </>
   )
 }
