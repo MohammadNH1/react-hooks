@@ -1,44 +1,22 @@
-import { useEffect, useRef, useState } from "react"
-// https://www.robinwieruch.de/typescript-react-useref/
-function App() {
-  const inputRef = useRef<HTMLInputElement>(null)
+import { useState } from "react"
+import ConditionalRendering from "./components/ConditionalRedering"
+import ExpensiveComponent from "./components/ExpensiveComponents"
+// https://dev.to/kirubelkinfe/mastering-usememo-in-react-with-typescript-4-different-use-cases-for-usememo-5gal
 
-  useEffect(()=>{
-    if(inputRef.current){
-      inputRef.current.focus()
-    }
-
-  },[])
-
-  type counterRefType= {
-    increament:number,
-    decreament:number
+function App(){
+  const [showDetails,setShowDetails] = useState<boolean>(true)
+  const handleToggle = ()=>{
+    setShowDetails(!showDetails)
   }
-  const btnRef = useRef<counterRefType>({
-    increament:0,
-    decreament:0
-  })
-
-  const [count,setCount] = useState<number>(0)
-
-  const handleIncreament = ()=>{
-    btnRef.current.increament++;
-    setCount(count+1);
-  }
-  const handleDecreament = () =>{
-    btnRef.current.decreament++;
-    setCount(count-1)
-  }
-  return (
-   <>
-   <input type="text" ref={inputRef} placeholder="Enter your name..."/> <br />
-   <p>count: {count}</p>
-   <button onClick={handleIncreament}>+</button>
-   <button onClick={handleDecreament}>-</button> <br />
-   <div> increament cliked {btnRef.current.increament} times</div> 
-   <div> decreament clicked {btnRef.current.decreament} times</div>
-   </>
-  )
+return(
+  <>
+  <h4> Hello World</h4>
+  <ExpensiveComponent data={[10,20,100,200,6000,10,10000]}/>
+  <ConditionalRendering showDetails={showDetails}/>
+  <button onClick={handleToggle}>{showDetails?'hide details page':'show details page'}</button>
+  </>
+  
+)
 }
 
 export default App
